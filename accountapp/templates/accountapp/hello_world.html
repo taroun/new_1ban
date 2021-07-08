@@ -5,6 +5,10 @@
     <div style=" margin: 2rem; text-align: center;">
         <h1>안녕!!</h1>
 
+        <form action="/accounts/hello_world/" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-info px-3 rounded-pill">
+        </form>
         <h3>{{ text }}</h3>
     </div>
 

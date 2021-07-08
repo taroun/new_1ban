@@ -7,7 +7,7 @@ from django.shortcuts import render
 #    return HttpResponse("안녕하세요!")
 
 def hello_world(request):
-    if request == 'POST':
+    if request.method == 'POST':
         return render(request, "accountapp/hello_world.html",
                       context={'text':'POST METHOD'})
     else:
