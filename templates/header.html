@@ -6,8 +6,25 @@
     <div class="taroun_header_button">
         <span>메뉴1</span>
         <span>메뉴2</span>
-        <span>메뉴3</span>
-        <span>메뉴4</span>
+
+        {% if not user.is_authenticated %}
+            <span>
+                <a href="{% url 'accountapp:login' %}">
+                    로그인
+                </a>
+            </span>
+            <span>
+                <a href="{% url 'accountapp:create' %}">
+                    계정생성
+                </a>
+            </span>
+        {% else %}
+            <span>
+                <a href="{% url 'accountapp:logout' %}">
+                    로그아웃
+                </a>
+            </span>
+        {% endif %}
     </div>
 
 </div>
