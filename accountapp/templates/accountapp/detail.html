@@ -9,6 +9,13 @@
         <div>
             {{ target_user.date_joined }}
         </div>
+        <div>
+            <p>
+                <a href="{% url 'accountapp:update' pk=user.pk %}">
+                    정보 수정
+                </a>
+            </p>
+        </div>
     </div>
 
 {% endblock %}
