@@ -3,7 +3,7 @@
     <div class="taroun_header_logo">
         <h1>Taroun</h1>
     </div>
-    <div class="taroun_header_button nav justify-content-center nav-pills">
+    <div class="taroun_header_button nav justify-content-center nav-pills" id="myTab">
         <span class="nav-item mx-1">
             <a class="nav-link" href="#">
                 메뉴1
@@ -27,6 +27,11 @@
                 </a>
             </span>
         {% else %}
+            <span class="nav-item mx-1">
+                <a class="nav-link" href="{% url 'accountapp:detail' pk=user.pk %}">
+                    마이 페이지
+                </a>
+            </span>
             <span class="nav-item mx-1">
                 <a class="nav-link" href="{% url 'accountapp:logout' %}">
                     로그아웃
