@@ -9,12 +9,15 @@
         <div>
             {{ target_user.date_joined }}
         </div>
-        <div>
-            <p>
-                <a href="{% url 'accountapp:update' pk=user.pk %}">
+        <div class="p-2">
+            <a class="btn btn-dark mx-2" href="{% url 'accountapp:update' pk=user.pk %}">
                     정보 수정
-                </a>
-            </p>
+            </a>
+        </div>
+        <div class="p-2">
+            <a class="btn btn-dark mx-2" href="{% url 'accountapp:delete' pk=user.pk %}">
+                    삭제
+            </a>
         </div>
     </div>
 
