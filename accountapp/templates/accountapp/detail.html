@@ -10,9 +10,11 @@
                      alt="프로필 이미지">
                 <h2 class="NNS_B">
                     {{ target_user.profile.nickname }}
-                    <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                        수정하기
-                    </a>
+                    {% if user == target_user %}
+                        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                            수정하기
+                        </a>
+                    {% endif %}
                 </h2>
                 <h5>{{ target_user.profile.message }}</h5>
             {% else %}
