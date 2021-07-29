@@ -26,18 +26,15 @@
                 </h2>
             {% endif %}
         </div>
-        <div>
-            {{ target_user.date_joined }}
-        </div>
         {% if user == target_user %}
             <div class="p-2">
-                <a class="btn btn-dark mx-2" href="{% url 'accountapp:update' pk=user.pk %}">
-                        정보 수정
+                <a href="{% url 'accountapp:update' pk=user.pk %}"
+                   class="material-icons round-button mx-1">
+                        settings
                 </a>
-            </div>
-            <div class="p-2">
-                <a class="btn btn-dark mx-2" href="{% url 'accountapp:delete' pk=user.pk %}">
-                        삭제
+                <a href="{% url 'accountapp:delete' pk=target_user.pk %}"
+                   class="material-icons round-button mx-1">
+                        close
                 </a>
             </div>
         {% endif %}
