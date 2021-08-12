@@ -64,6 +64,10 @@
     margin: 2rem 0;
 }
 
+.article_material{
+    text-decoration: none;
+}
+
 .comment_box{
     border: solid;
     border-color: #b0b0b0;
