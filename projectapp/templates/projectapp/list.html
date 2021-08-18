@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    <div class="container my-3">
+
+        {% for project in project_list %}
+
+            <div>
+                <a href="{% url 'projectapp:detail' pk=project.pk %}">
+                    <img src="{{ project.image.url }}" alt="">
+                </a>
+                <span>
+                    {{ project.name }}
+                </span>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+
+    {% include 'snippets/pagination.html' %}
+
+    <div class="text-center my-5">
+        <a href="{% url 'projectapp:create' %}"
+           class="btn btn-outline-dark rounded-pill px-5">
+            <p class="material-icons article_material">brush</p>
+            프로젝트 작성
+        </a>
+    </div>
+
+{% endblock %}
