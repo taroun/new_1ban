@@ -3,6 +3,32 @@
 
 {% block content %}
 
+    <style>
+
+        .container{
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .container div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 1rem;
+            flex-direction: column;
+
+        }
+
+        div img {
+            width: 7rem;
+            height: 7rem;
+            object-fit: cover;
+            border-radius: 1rem;
+            box-shadow: 0 0 1rem darkgray;
+        }
+
+    </style>
+
 
     <div class="container my-3">
 
@@ -13,7 +39,7 @@
                     <img src="{{ project.image.url }}" alt="">
                 </a>
                 <span>
-                    {{ project.name }}
+                    {{ project.name | truncatechars:10 }}
                 </span>
             </div>
 
