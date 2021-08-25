@@ -14,18 +14,24 @@ from articleapp.models import Article
 from likeapp.models import LikeRecord
 
 @transaction.atomic
-def db_transaction(user, article, likeRecord):
-
+def db_transaction(user, article):
+    likeRecord = LikeRecord.objects.filter(user=user,
+                                           article=article)
     if likeRecord.exists():
-
         raise ValidationError('좋아요가 이미 존재합니다.')
-
     else:
         LikeRecord(user=user, article=article).save()
 
     article.like += 1
     article.save()
 
+@transaction.atomic
+def db_transaction2(user, article):
+    likeRecord = LikeRecord.objects.filter(user=user,
+                                           article=article)
+    likeRecord.delete()
+    article.like -= 1
+    article.save()
 
 @method_decorator(login_required, 'get')
 class LikeArticleView(RedirectView):
@@ -33,16 +39,13 @@ class LikeArticleView(RedirectView):
     def get(self, request, *args, **kwargs):
         user = request.user
         article = Article.objects.get(pk=kwargs['article_pk'])
-        likeRecord = LikeRecord.objects.filter(user=user,
-                                               article=article)
+
 
         try:
-            db_transaction(user, article, likeRecord)
+            db_transaction(user, article)
             messages.add_message(request, messages.SUCCESS, '좋아요가 반영 되었습니다.')
         except ValidationError:
-            likeRecord.delete()
-            article.like -= 1
-            article.save()
+            db_transaction2(user, article)
             messages.add_message(request, messages.SUCCESS, '좋아요가 취소되었습니다.')
             return HttpResponseRedirect(reverse('articleapp:detail', kwargs={'pk': kwargs['article_pk']}))
 
