@@ -13,7 +13,7 @@ services:
       - 80:80
 
   django:
-    image: taroun_1ban_django:4
+    image: taroun_1ban_django:5
     networks:
       - taroun_1ban_network
     secrets:
@@ -36,9 +36,9 @@ services:
       - MARIADB_ROOT_PASSWORD
     environment:
       MARIADB_DATABASE: django
-      MARIADB_USER: django
-      MARIADB_PASSWORD: tata1212
-      MARIADB_ROOT_PASSWORD: tata1212
+      MARIADB_USER_FILE: /run/secrets/MARIADB_USER
+      MARIADB_PASSWORD_FILE: /run/secrets/MARIADB_PASSWORD
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/MARIADB_ROOT_PASSWORD
 
 networks:
   taroun_1ban_network:
